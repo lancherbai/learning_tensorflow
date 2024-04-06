@@ -1,131 +1,203 @@
-# Tensorflow
-
-[TOC]
+# Tensorflow Learning
 
 
 
-
-
-# 0. Tensorflow official guide - learn ML
-
-**Master your path**
-
-https://www.tensorflow.org/resources/learn-ml
-
-* Basics of machine learning with TensorFlow
-
-https://www.tensorflow.org/resources/learn-ml/basics-of-machine-learning 
-
-* Theoretical and advanced machine learning with TensorFlow
-
-https://www.tensorflow.org/resources/learn-ml/theoretical-and-advanced-machine-learning
+Tensorflow Official recommendations: https://www.tensorflow.org/resources/learn-ml/basics-of-machine-learning?hl=zh-cn
 
 
 
+## 1.TensorFlow 的机器学习基础知识
+
+### Step 1：了解什么是机器学习
+
+#### Books
+
+[《使用 Python 进行深度学习》](https://www.manning.com/books/deep-learning-with-python-second-edition) 1-4章
+
+#### Courses
+
+[TensorFlow 简介](https://www.coursera.org/learn/introduction-tensorflow)
+
+[TensorFlow 在深度学习中的应用简介](https://www.udacity.com/course/intro-to-tensorflow-for-deep-learning--ud187)
+
+[神经网络工作原理](https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi&hl=zh-cn)
 
 
-# 1. Basics of machine learning with TensorFlow
 
-Udacity: **Intro to TensorFlow for Deep Learning**
+### Step 2：基础知识延伸
 
-https://learn.udacity.com/courses/ud187
-
+[《TensorFlow 开发者》专项课程](https://www.coursera.org/specializations/tensorflow-in-practice)
 
 
-Course Notes:
 
-## 1) Introduction to Machine Learning
+### Step 3：实践
 
-<img src="./images/01traditional_software_development_vs_mahine_learning.png" style="zoom:33%;" />
+[TensorFlow 核心教程](https://www.tensorflow.org/tutorials?hl=zh-cn)
 
-<img src="./images/02python_function.png" style="zoom:33%;" />
+Kaggle competations
 
-<img src="./images/03machine_learning_algorithms.png" style="zoom:33%;" />
 
-<img src="./images/04machine_learning_neural_network.png" style="zoom:33%;" />
 
-https://learn.udacity.com/courses/ud187/lessons/7b590cdb-0acf-4118-848c-8728ced19bc6/concepts/946a3af2-4f06-4643-8115-f0ab760152a8
+### Step 4：更加深入地了解 TensorFlow
 
-Reducing loss (from **Machine Learning Crash Course with TensorFlow APIs**)
+[《使用 Python 进行深度学习》](https://www.manning.com/books/deep-learning-with-python-second-edition) 5-9章
 
-https://developers.google.com/machine-learning/crash-course/reducing-loss/video-lecture
+[《使用 Scikit-Learn、Keras 和 TensorFlow 进行机器学习实践》](https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/)
 
-### Recap
 
-Congratulations! You just trained your first machine learning model. We saw that by training the model with input data and the corresponding output, the model learned to multiply the input by 1.8 and then add 32 to get the correct result.
 
-![img](https://video.udacity-data.com/topher/2019/March/5c7f0af9_tensorflow-l2f1/tensorflow-l2f1.png)
+## 2.使用 TensorFlow 进行理论机器学习和高级机器学习
 
-This was really impressive considering that we only needed a few lines code:
+https://www.tensorflow.org/resources/learn-ml/theoretical-and-advanced-machine-learning?hl=zh-cn
 
-```python
-l0 = tf.keras.layers.Dense(units=1, input_shape=[1]) 
-model = tf.keras.Sequential([l0])
-model.compile(loss='mean_squared_error', optimizer=tf.keras.optimizers.Adam(0.1))
-history = model.fit(celsius_q, fahrenheit_a, epochs=500, verbose=False)
-model.predict([100.0])
+### 第 1 步：复习数学概念
+
+[线性代数的本质](https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab&hl=zh-cn)和[微积分的本质](https://www.youtube.com/playlist?list=PLZHQObOWTQDMsr9K-rj53DwVRMYO3t5Yr&hl=zh-cn)
+
+[线性代数](https://ocw.mit.edu/courses/mathematics/18-06-linear-algebra-spring-2010/)或[单变量微积分](https://ocw.mit.edu/courses/mathematics/18-01-single-variable-calculus-fall-2006/)
+
+
+
+### 第 2 步：通过这些课程和图书加深对深度学习的理解
+
+[麻省理工学院课程 6.S191：深度学习简介](http://introtodeeplearning.com/)
+
+Andrew Ng  [在 Coursera 上发布的《深度学习》专项课程](https://www.coursera.org/specializations/deep-learning)
+
+
+
+⬆ 另请 ⬇ 阅读这些图书：
+
+[《深度学习》（麻省理工学院出版社出版）](https://www.deeplearningbook.org/)
+
+Michael Nielsen 编著的在线图书[神经网络与深度学习](http://neuralnetworksanddeeplearning.com/)
+
+
+
+### 第 3 步：阅读论文并通过 TensorFlow 实现论文中的方法
+
+[高级教程](https://www.tensorflow.org/tutorials?hl=zh-cn)
+
+学习高级应用（[机器翻译](https://www.tensorflow.org/tutorials/text/transformer?hl=zh-cn)或[图片说明](https://www.tensorflow.org/tutorials/text/image_captioning?hl=zh-cn)）的最佳方式是阅读教程中链接到的论文。
+
+
+
+# Appendix
+
+## Mac M2 install Tensorflow GPU
+
+https://developer.apple.com/metal/tensorflow-plugin/
+
+For python >= 3.8 and tenforflow >= 2.13.
+
+```bash
+conda create -n tf-2-16-gpu python=3.10
+
+conda activate tf-2-16-gpu
+pip install tensorflow==2.16.1 tensorflow-metal==1.1.0
+
+conda install jupyter ipython chardet
 ```
 
-This example is the general plan for of any machine learning program. You will use the same structure to create and train your neural network, and use it to make predictions.
+```bash
+conda list | grep tensorflow
+# packages in environment at /opt/miniconda3/envs/tensorflow-gpu:
+tensorflow                2.16.1                   pypi_0    pypi
+tensorflow-io-gcs-filesystem 0.36.0                   pypi_0    pypi
+tensorflow-metal          1.1.0                    pypi_0    pypi
+```
 
-### The Training Process
+Test using GPU.
 
-The training process (happening in `model.fit(...)`) is really about tuning the internal variables of the networks to the best possible values, so that they can map the input to the output. This is achieved through an optimization process called Gradient Descent, which uses Numeric Analysis to find the best possible values to the internal variables of the model.
+```
+You can also adjust the verbosity by changing the value of TF_CPP_MIN_LOG_LEVEL:
 
-To do machine learning, you don't really need to understand these details. But for the curious: gradient descent iteratively adjusts parameters, nudging them in the correct direction a bit at a time until they reach the best values. In this case “best values” means that nudging them any more would make the model perform worse. The function that measures how good or bad the model is during each iteration is called the “loss function”, and the goal of each nudge is to “minimize the loss function.”
+0 = all messages are logged (default behavior)
+1 = INFO messages are not printed
+2 = INFO and WARNING messages are not printed
+3 = INFO, WARNING, and ERROR messages are not printed
+```
 
-The training process starts with a forward pass, where the input data is fed to the neural network (see Fig.1). Then the model applies its internal math on the input and internal variables to predict an answer ("Model Predicts a Value" in Fig. 1).
+```python
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # Setting log levels as above explained
 
-In our example, the input was the degrees in Celsius, and the model predicted the corresponding degrees in Fahrenheit.
+import sys
+import tensorflow as tf
+import keras
+import platform
 
-![img](https://video.udacity-data.com/topher/2019/March/5c7f0b37_tensorflow-l2f2/tensorflow-l2f2.png)
+print(f"Python               {sys.version}")
+print(f"Python Platform:     {platform.platform()}")
+print(f"Tensor Flow Version: {tf.__version__}")
+print(f"Keras Version:       {keras.__version__}")
+print("len(tf.config.list_physical_devices('GPU')) ", len(tf.config.list_physical_devices('GPU')))
+print("tf.config.list_physical_devices('GPU')      ", tf.config.list_physical_devices('GPU'))
 
-Figure 1. Forward Pass
+# Create some tensors
+print("\nExample:")
+tf.debugging.set_log_device_placement(True)
+a = tf.constant([[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]])
+b = tf.constant([[1.0, 2.0], [3.0, 4.0], [5.0, 6.0]])
+c = tf.matmul(a, b)
+print(f"{a} * {b} == {c}")
+```
 
-Once a value is predicted, the difference between that predicted value and the correct value is calculated. This difference is called the loss, and it's a measure of how well the model performed the mapping task. The value of the loss is calculated using a loss function, which we specified with the loss parameter when calling `model.compile()`.
+```python
+import os
+import keras
 
-After the loss is calculated, the internal variables (weights and biases) of all the layers of the neural network are adjusted, so as to minimize this loss — that is, to make the output value closer to the correct value (see Fig. 2).
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # Setting log levels
+cifar = keras.datasets.cifar100
+(x_train, y_train), (x_test, y_test) = cifar.load_data()
+model = keras.applications.ResNet50(
+    include_top=True,
+    weights=None,
+    input_shape=(32, 32, 3),
+    classes=100,)
 
-![img](https://video.udacity-data.com/topher/2019/March/5c7f0ba2_tensorflow-l2f3/tensorflow-l2f3.png)
-
-Figure 2. Backpropagation
-
-This optimization process is called Gradient Descent. The specific algorithm used to calculate the new value of each internal variable is specified by the optimizer parameter when calling `model.compile(...)`. In this example we used the `Adam` optimizer.
-
-It is not required for this course, but if you're interested in learning more details about how the training process works, you can look at the [lesson on reducing loss in Google’s machine learning crash course](https://developers.google.com/machine-learning/crash-course/reducing-loss/video-lecture).
-
-By now you should know what the following terms are:
-
-- **Feature:** The input(s) to our model
-- **Examples:** An input/output pair used for training
-- **Labels:** The output of the model
-- **Layer:** A collection of nodes connected together within a neural network.
-- **Model:** The representation of your neural network
-- **Dense and Fully Connected (FC):** Each node in one layer is connected to each node in the previous layer.
-- **Weights and biases:** The internal variables of model
-- **Loss:** The discrepancy between the desired output and the actual output
-- **MSE:** Mean squared error, a type of loss function that counts a small number of large discrepancies as worse than a large number of small ones.
-- **Gradient Descent:** An algorithm that changes the internal variables a bit at a time to gradually reduce the loss function.
-- **Optimizer:** A specific implementation of the gradient descent algorithm. (There are many algorithms for this. In this course we will only use the “Adam” Optimizer, which stands for *ADAptive with Momentum*. It is considered the best-practice optimizer.)
-- **Learning rate:** The “step size” for loss improvement during gradient descent.
-- **Batch:** The set of examples used during training of the neural network
-- **Epoch:** A full pass over the entire training dataset
-- **Forward pass:** The computation of output values from input
-- **Backward pass (backpropagation):** The calculation of internal variable adjustments according to the optimizer algorithm, starting from the output layer and working back through each layer to the input.
-
-### Dense
-
-<img src="./images/05Dense.png" style="zoom:33%;" />
-
-<img src="./images/06weight_and_bias.png" style="zoom:33%;" />
-
-<img src="./images/07back_to_celsius_calculator.png" style="zoom:33%;" />
-
-## 2) Your First Model - Fashion MNIST
+loss_fn = keras.losses.SparseCategoricalCrossentropy(from_logits=False)
+model.compile(optimizer="adam", loss=loss_fn, metrics=["accuracy"])
+model.fit(x_train, y_train, epochs=5, batch_size=64)
 
 
+# With Apple GPU used, one epoch took 536.0334 seconds
+# With Apple CPU used, one epoch took 337.3022 seconds
+```
 
+Faced warnings.
 
+```bash
+Could not identify NUMA node of platform GPU ID 0, defaulting to 0. Your kernel may not have been built with NUMA support.
+```
 
+## Mac M2 install tensorflow2.9.0 - env for coursera intro to tenforflow
 
+```python
+# course required
+tensorflow==2.7.0
+scikit-learn==1.0.1
+pandas==1.1.5
+matplotlib==3.2.2
+seaborn==0.11.2
+```
+
+```python
+# actually installed
+conda create -n tf-2-9-gpu python=3.9
+conda activate tf-2-9-gpu
+
+# install tensorflow
+conda install scikit-learn==1.0.1
+conda install -c apple tensorflow-deps==2.9.0
+pip install tensorflow-macos==2.9.0 tensorflow-metal==0.5.0 pandas==1.1.5 matplotlib==3.2.2 seaborn==0.11.2
+conda install jupyter ipython chardet
+```
+
+```python
+import tensorflow as tf
+
+print(tf.__version__)
+print(tf.config.list_physical_devices())
+```
 
