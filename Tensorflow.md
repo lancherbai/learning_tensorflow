@@ -84,49 +84,95 @@ Michael Nielsen 编著的在线图书[神经网络与深度学习](http://neural
 
 # Appendix
 
-## Mac M2 install Tensorflow GPU
+## Mac M2 install tensorflow
 
 https://developer.apple.com/metal/tensorflow-plugin/
 
-For python >= 3.8 and tenforflow >= 2.13.
+### 1. If you only want to use it with CPU
+For TensorFlow version 2.13 or later:
 
 ```bash
-conda create -n tf-2-16-gpu python=3.10
+pip install tensorflow
+```
 
-conda activate tf-2-16-gpu
-pip install tensorflow==2.16.1 tensorflow-metal==1.1.0
+For TensorFlow version 2.12 or earlier:
 
+```bash
+pip install tensorflow-macos
+```
+
+
+
+### 2. Install tensorflow-metal plug-in to enable GPU accelarate.
+
+```bash
+pip install tensorflow-metal
+```
+
+
+
+#### Example1: Install tensorflow2.16 with GPU enabled.
+
+Note: with tensorflow 2.16.1 and tensorflow-metal 1.1.0, the GPU seems not working fine, need almost a few minutes to complete a epoch. So here we use tensorflow==2.15.1.
+
+```bash
+conda create -n tf-2-15-gpu python=3.10
+
+conda activate tf-2-15-gpu
+pip install tensorflow==2.15.1 tensorflow-metal==1.1.0
 conda install jupyter ipython chardet
 ```
 
-```bash
-conda list | grep tensorflow
-# packages in environment at /opt/miniconda3/envs/tensorflow-gpu:
-tensorflow                2.16.1                   pypi_0    pypi
-tensorflow-io-gcs-filesystem 0.36.0                   pypi_0    pypi
-tensorflow-metal          1.1.0                    pypi_0    pypi
+
+
+#### Example 2: tensorflow2.9.0 with GPU enabled.
+
+```python
+conda create -n tf-2-9-gpu python=3.9
+conda activate tf-2-9-gpu
+
+pip install tensorflow-macos==2.9.0 tensorflow-metal==0.5.0
+conda install scikit-learn==1.0.1 pandas==1.1.5 matplotlib==3.2.2 seaborn==0.11.2  scipy==1.12.0 jupyter ipython chardet 
 ```
 
-Test using GPU.
 
-```
-You can also adjust the verbosity by changing the value of TF_CPP_MIN_LOG_LEVEL:
 
-0 = all messages are logged (default behavior)
-1 = INFO messages are not printed
-2 = INFO and WARNING messages are not printed
-3 = INFO, WARNING, and ERROR messages are not printed
-```
+### 3. Test using GPU
+
+Test using GPU example from Apple.
 
 ```python
 import os
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # Setting log levels as above explained
+import tensorflow as tf
 
+cifar = tf.keras.datasets.cifar100
+(x_train, y_train), (x_test, y_test) = cifar.load_data()
+model = tf.keras.applications.ResNet50(
+    include_top=True,
+    weights=None,
+    input_shape=(32, 32, 3),
+    classes=100,)
+
+loss_fn = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=False)
+model.compile(optimizer="adam", loss=loss_fn, metrics=["accuracy"])
+model.fit(x_train, y_train, epochs=5, batch_size=64)
+
+# With Apple GPU enabled, 50s/epoch
+# With Apple CPU enabled, 300s/epoch
+
+# Note: with tensorflow 2.16.1 and tensorflow-metal 1.1.0, the GPU seems not working fine, need almost a few minutes to complete a epoch.
+```
+
+Test using GPU example2.
+
+```python
+import os
 import sys
 import tensorflow as tf
 import keras
 import platform
 
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # Setting log levels as above explained
 print(f"Python               {sys.version}")
 print(f"Python Platform:     {platform.platform()}")
 print(f"Tensor Flow Version: {tf.__version__}")
@@ -143,61 +189,25 @@ c = tf.matmul(a, b)
 print(f"{a} * {b} == {c}")
 ```
 
-```python
-import os
-import keras
+```
+You can also adjust the verbosity by changing the value of TF_CPP_MIN_LOG_LEVEL:
 
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # Setting log levels
-cifar = keras.datasets.cifar100
-(x_train, y_train), (x_test, y_test) = cifar.load_data()
-model = keras.applications.ResNet50(
-    include_top=True,
-    weights=None,
-    input_shape=(32, 32, 3),
-    classes=100,)
+0 = all messages are logged (default behavior)
+1 = INFO messages are not printed
+2 = INFO and WARNING messages are not printed
+3 = INFO, WARNING, and ERROR messages are not printed
 
-loss_fn = keras.losses.SparseCategoricalCrossentropy(from_logits=False)
-model.compile(optimizer="adam", loss=loss_fn, metrics=["accuracy"])
-model.fit(x_train, y_train, epochs=5, batch_size=64)
-
-
-# With Apple GPU used, one epoch took 536.0334 seconds
-# With Apple CPU used, one epoch took 337.3022 seconds
+Every log level setting only takes effect when you restart the notebook kernel and run.
 ```
 
-Faced warnings.
+Found warnings.
 
-```bash
+```
 Could not identify NUMA node of platform GPU ID 0, defaulting to 0. Your kernel may not have been built with NUMA support.
 ```
 
-## Mac M2 install tensorflow2.9.0 - env for coursera intro to tenforflow
 
-```python
-# course required
-tensorflow==2.7.0
-scikit-learn==1.0.1
-pandas==1.1.5
-matplotlib==3.2.2
-seaborn==0.11.2
-```
 
-```python
-# actually installed
-conda create -n tf-2-9-gpu python=3.9
-conda activate tf-2-9-gpu
+## Google Colaboratory FAQ
 
-# install tensorflow
-conda install scikit-learn==1.0.1
-conda install -c apple tensorflow-deps==2.9.0
-pip install tensorflow-macos==2.9.0 tensorflow-metal==0.5.0 pandas==1.1.5 matplotlib==3.2.2 seaborn==0.11.2
-conda install jupyter ipython chardet
-```
-
-```python
-import tensorflow as tf
-
-print(tf.__version__)
-print(tf.config.list_physical_devices())
-```
-
+https://research.google.com/colaboratory/faq.html
