@@ -1,3 +1,14 @@
 .DS_Store
 .idea
 .ipynb_checkpoints
+__pycache__
+*.pkl
+*.zip
+*.csv
+*.tsz
+*.jpg
+*.png
+*.h5
+courses/DeepLearning.AI_TensorFlow_Developer_Professional_Certificate/C2/notebooks/data/*
+courses/DeepLearning.AI_TensorFlow_Developer_Professional_Certificate/C3/notebooks/w2/lab_1/data/*
+sarcasm.json

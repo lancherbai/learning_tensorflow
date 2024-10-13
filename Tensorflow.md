@@ -132,7 +132,7 @@ conda create -n tf-2-9-gpu python=3.9
 conda activate tf-2-9-gpu
 
 pip install tensorflow-macos==2.9.0 tensorflow-metal==0.5.0
-conda install scikit-learn==1.0.1 pandas==1.1.5 matplotlib==3.2.2 seaborn==0.11.2  scipy==1.12.0 jupyter ipython chardet 
+conda install scikit-learn==1.0.1 pandas==1.1.5 matplotlib==3.2.2 seaborn==0.11.2  scipy==1.12.0 pillow==10.3.0 jupyter ipython chardet 
 ```
 
 
@@ -211,3 +211,15 @@ Could not identify NUMA node of platform GPU ID 0, defaulting to 0. Your kernel 
 ## Google Colaboratory FAQ
 
 https://research.google.com/colaboratory/faq.html
+
+
+
+## Deep Learning Algorithms
+
+### 1) Binary Classification
+
+https://www.youtube.com/watch?v=eqEc66RFY0I&t=6s
+
+### 2) Understanding Categorical Cross-Entropy Loss, Binary Cross-Entropy Loss, Softmax Loss, Logistic Loss, Focal Loss and all those confusing names
+
+https://gombru.github.io/2018/05/23/cross_entropy_loss/
